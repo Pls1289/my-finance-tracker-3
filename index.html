@@ -3,429 +3,201 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MyFinanceTracker - Full Dashboard</title>
-  <!-- Tailwind CSS & Chart.js -->
+  <title>MyFinanceTracker</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Inter', sans-serif; }
-    .tab-btn.active {
-      background-color: #2563eb;
-      color: #ffffff;
-    }
   </style>
 </head>
-<body class="bg-[#f8fafc] text-slate-800 antialiased min-h-screen flex flex-col md:flex-row">
+<body class="bg-slate-900 text-slate-100 min-h-screen p-4 flex flex-col items-center">
 
-  <!-- Mobile Header with Menu Toggle -->
-  <div class="md:hidden bg-[#111c44] text-white p-4 flex justify-between items-center sticky top-0 z-30 shadow">
-    <div class="flex items-center gap-2">
-      <div class="bg-emerald-500 p-1.5 rounded-lg">
-        <i data-lucide="wallet" class="w-5 h-5 text-white"></i>
-      </div>
-      <span class="font-bold text-sm tracking-wide">MyFinanceTracker</span>
-    </div>
-    <button onclick="toggleSidebar()" class="text-slate-300 hover:text-white p-1">
-      <i data-lucide="menu" class="w-6 h-6"></i>
-    </button>
-  </div>
-
-  <!-- Sidebar -->
-  <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-64 bg-[#111c44] text-white p-5 flex flex-col justify-between transform -translate-x-full md:translate-x-0 md:static md:inset-auto transition-transform duration-200 ease-in-out shadow-xl md:shadow-none">
-    <div>
-      <div class="hidden md:flex items-center gap-3 mb-8">
-        <div class="bg-emerald-500 p-2.5 rounded-xl text-white">
-          <i data-lucide="wallet" class="w-6 h-6"></i>
-        </div>
-        <div>
-          <h1 class="text-base font-bold tracking-tight">MyFinanceTracker</h1>
-          <p class="text-[11px] text-slate-400">Track • Plan • Grow</p>
-        </div>
-      </div>
-
-      <nav class="space-y-1.5 text-sm font-medium">
-        <button onclick="switchTab('dashboard')" class="tab-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800 transition active" id="btn-dashboard">
-          <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboard
-        </button>
-        <button onclick="switchTab('Mess')" class="tab-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800 transition" id="btn-Mess">
-          <i data-lucide="utensils" class="w-4 h-4"></i> Mess Expenses
-        </button>
-        <button onclick="switchTab('Personal')" class="tab-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800 transition" id="btn-Personal">
-          <i data-lucide="user" class="w-4 h-4"></i> Personal Expenses
-        </button>
-        <button onclick="switchTab('Loan')" class="tab-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800 transition" id="btn-Loan">
-          <i data-lucide="coins" class="w-4 h-4"></i> Loans
-        </button>
-        <button onclick="switchTab('Payables')" class="tab-btn w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800 transition" id="btn-Payables">
-          <i data-lucide="receipt" class="w-4 h-4"></i> Payables
-        </button>
-      </nav>
-    </div>
-
-    <div class="mt-6 pt-4 border-t border-slate-700/60">
-      <button onclick="openModal()" class="w-full flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-2.5 rounded-xl text-xs transition shadow-md">
-        <i data-lucide="plus" class="w-4 h-4"></i> Add Any Entry
-      </button>
-    </div>
-  </aside>
-
-  <!-- Overlay for Mobile Sidebar -->
-  <div id="backdrop" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-30 hidden md:hidden"></div>
-
-  <!-- Main Work Area -->
-  <main class="flex-1 p-4 md:p-8 space-y-6 overflow-x-hidden">
-    
-    <!-- Top Bar -->
-    <header class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
-      <div>
-        <h2 class="text-lg md:text-xl font-bold text-slate-900 flex items-center gap-2">
-          Welcome, Padmanav! 👋
-        </h2>
-        <p class="text-xs text-slate-500">Live tracker for personal expenses, mess records, and loans.</p>
-      </div>
-
-      <div class="flex items-center gap-3 self-end sm:self-auto">
-        <button onclick="openModal()" class="flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white px-3.5 py-1.5 rounded-xl text-xs font-semibold shadow-sm transition">
-          <i data-lucide="plus" class="w-3.5 h-3.5"></i> Entry Karein
-        </button>
-        <div class="flex items-center gap-2 bg-slate-50 px-2.5 py-1 rounded-xl border border-slate-200">
-          <div class="w-7 h-7 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-xs">PS</div>
-          <span class="text-xs font-medium text-slate-700 hidden sm:inline">Padmanav Sahu</span>
-        </div>
-      </div>
+  <div class="w-full max-w-lg space-y-4">
+    <!-- Header -->
+    <header class="text-center py-2">
+      <h1 class="text-2xl font-bold text-emerald-400">MyFinanceTracker</h1>
+      <p class="text-xs text-slate-400">Personal & Mess Expense Manager</p>
     </header>
 
-    <!-- Stat Overview Cards -->
-    <section class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+    <!-- Nav Tabs (Clickable) -->
+    <div class="flex overflow-x-auto gap-2 pb-1 text-xs font-semibold no-scrollbar">
+      <button onclick="setTab('All')" id="tab-All" class="px-3.5 py-2 rounded-xl bg-emerald-500 text-slate-950 font-bold transition">All Records</button>
+      <button onclick="setTab('Mess')" id="tab-Mess" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Mess</button>
+      <button onclick="setTab('Personal')" id="tab-Personal" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Personal</button>
+      <button onclick="setTab('Loan')" id="tab-Loan" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Loans</button>
+      <button onclick="setTab('Payables')" id="tab-Payables" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Payables</button>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="grid grid-cols-2 gap-3">
+      <div class="bg-slate-800/90 border border-slate-700/60 p-4 rounded-2xl">
+        <span class="text-[11px] text-slate-400 uppercase tracking-wider" id="summaryTitle">Total (All)</span>
+        <div class="text-2xl font-bold text-emerald-400 mt-1" id="totalDisplay">₹0</div>
+      </div>
+      <div class="bg-slate-800/90 border border-slate-700/60 p-4 rounded-2xl">
+        <span class="text-[11px] text-slate-400 uppercase tracking-wider">Entries Count</span>
+        <div class="text-2xl font-bold text-sky-400 mt-1" id="countDisplay">0</div>
+      </div>
+    </div>
+
+    <!-- Add Entry Form (Fully Working) -->
+    <div class="bg-slate-800/90 border border-slate-700/60 p-4 rounded-2xl space-y-3">
+      <h2 class="text-sm font-semibold text-slate-200">Add New Expense / Entry</h2>
       
-      <div onclick="switchTab('Mess')" class="cursor-pointer bg-white p-4 rounded-2xl border border-slate-100 shadow-sm hover:border-emerald-300 transition">
-        <div class="w-9 h-9 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center mb-2">
-          <i data-lucide="utensils" class="w-5 h-5"></i>
-        </div>
-        <span class="text-[11px] font-medium text-slate-400 uppercase">Mess Expenses</span>
-        <div class="text-lg md:text-xl font-bold text-slate-900" id="cardMess">₹0</div>
+      <input id="itemTitle" type="text" placeholder="Title (e.g. Chana, Room Rent, Recharge)" 
+        class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-sm focus:outline-none focus:border-emerald-500 text-white">
+      
+      <div class="grid grid-cols-2 gap-2">
+        <input id="itemAmount" type="number" placeholder="Amount (₹)" 
+          class="bg-slate-900 border border-slate-700 rounded-xl p-3 text-sm focus:outline-none focus:border-emerald-500 text-white">
+        
+        <select id="itemCategory" class="bg-slate-900 border border-slate-700 rounded-xl p-3 text-sm text-slate-200 focus:outline-none focus:border-emerald-500">
+          <option value="Mess">Mess</option>
+          <option value="Personal">Personal</option>
+          <option value="Loan">Loan</option>
+          <option value="Payables">Payables</option>
+        </select>
       </div>
 
-      <div onclick="switchTab('Personal')" class="cursor-pointer bg-white p-4 rounded-2xl border border-slate-100 shadow-sm hover:border-blue-300 transition">
-        <div class="w-9 h-9 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-2">
-          <i data-lucide="user" class="w-5 h-5"></i>
-        </div>
-        <span class="text-[11px] font-medium text-slate-400 uppercase">Personal</span>
-        <div class="text-lg md:text-xl font-bold text-slate-900" id="cardPersonal">₹0</div>
+      <button onclick="addNewEntry()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 rounded-xl text-sm transition active:scale-95 shadow-lg shadow-emerald-500/20">
+        + Save Entry
+      </button>
+    </div>
+
+    <!-- Entry List View -->
+    <div class="bg-slate-800/90 border border-slate-700/60 p-4 rounded-2xl space-y-3">
+      <div class="flex justify-between items-center">
+        <h3 class="text-sm font-semibold text-slate-200" id="listHeading">Recent Entries</h3>
+        <button onclick="clearCurrentCategory()" class="text-[11px] text-red-400 hover:underline">Clear</button>
       </div>
 
-      <div onclick="switchTab('Loan')" class="cursor-pointer bg-white p-4 rounded-2xl border border-slate-100 shadow-sm hover:border-amber-300 transition">
-        <div class="w-9 h-9 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center mb-2">
-          <i data-lucide="coins" class="w-5 h-5"></i>
-        </div>
-        <span class="text-[11px] font-medium text-slate-400 uppercase">Loans</span>
-        <div class="text-lg md:text-xl font-bold text-slate-900" id="cardLoan">₹0</div>
+      <div id="entriesList" class="space-y-2 text-sm">
+        <!-- Records render here -->
       </div>
-
-      <div onclick="switchTab('Payables')" class="cursor-pointer bg-white p-4 rounded-2xl border border-slate-100 shadow-sm hover:border-purple-300 transition">
-        <div class="w-9 h-9 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center mb-2">
-          <i data-lucide="receipt" class="w-5 h-5"></i>
-        </div>
-        <span class="text-[11px] font-medium text-slate-400 uppercase">Payables</span>
-        <div class="text-lg md:text-xl font-bold text-slate-900" id="cardPayables">₹0</div>
-      </div>
-
-    </section>
-
-    <!-- Graphical Section (Only on Dashboard Tab) -->
-    <section id="chartSection" class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
-      <div class="lg:col-span-2 bg-white p-4 md:p-5 rounded-2xl border border-slate-100 shadow-sm">
-        <div class="flex justify-between items-center mb-3">
-          <h3 class="font-bold text-sm text-slate-800">Monthly Expense Overview</h3>
-          <span class="text-[11px] text-slate-400">Current Distribution</span>
-        </div>
-        <div class="h-56">
-          <canvas id="barChart"></canvas>
-        </div>
-      </div>
-
-      <div class="bg-white p-4 md:p-5 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between">
-        <h3 class="font-bold text-sm text-slate-800 mb-2">Breakdown Ratio</h3>
-        <div class="h-44 relative flex items-center justify-center">
-          <canvas id="donutChart"></canvas>
-        </div>
-        <p class="text-[11px] text-slate-400 text-center mt-2" id="donutNotice">Entries add hone par chart automatically adjust hoga.</p>
-      </div>
-    </section>
-
-    <!-- Dynamic Record Table View -->
-    <section class="bg-white p-4 md:p-5 rounded-2xl border border-slate-100 shadow-sm">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
-        <div>
-          <h3 class="font-bold text-base text-slate-800" id="tableHeaderTitle">All Transactions</h3>
-          <p class="text-xs text-slate-400" id="tableHeaderSub">Displaying all tracked items.</p>
-        </div>
-        <div class="flex items-center gap-2">
-          <button onclick="openModal()" class="text-xs text-blue-600 bg-blue-50 px-3 py-1.5 rounded-lg font-semibold hover:bg-blue-100 transition">
-            + Add to Current View
-          </button>
-        </div>
-      </div>
-
-      <div class="overflow-x-auto">
-        <table class="w-full text-left text-xs">
-          <thead>
-            <tr class="border-b border-slate-100 text-slate-400">
-              <th class="pb-2.5 font-semibold">Description</th>
-              <th class="pb-2.5 font-semibold">Category</th>
-              <th class="pb-2.5 font-semibold">Date</th>
-              <th class="pb-2.5 font-semibold text-right">Amount</th>
-              <th class="pb-2.5 font-semibold text-center">Action</th>
-            </tr>
-          </thead>
-          <tbody id="transactionBody" class="divide-y divide-slate-50">
-            <!-- Records injected via script -->
-          </tbody>
-        </table>
-      </div>
-
-      <div id="emptyNotice" class="text-center py-8 text-slate-400 text-xs hidden">
-        Koi record nahi mila. Naya record add karne ke liye upar button dabayein!
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Modal for Creating Entries -->
-  <div id="modalOverlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
-    <div class="bg-white w-full max-w-sm rounded-2xl p-5 shadow-2xl space-y-4">
-      <div class="flex justify-between items-center border-b pb-2.5">
-        <h4 class="font-bold text-sm text-slate-900">New Entry Add Karein</h4>
-        <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 text-lg">✕</button>
-      </div>
-
-      <form onsubmit="handleFormSubmit(event)" class="space-y-3 text-xs">
-        <div>
-          <label class="block mb-1 font-medium text-slate-700">Description / Naam *</label>
-          <input id="inputTitle" type="text" required placeholder="e.g. Mess monthly fees, Recharge" class="w-full border border-slate-200 rounded-lg p-2.5 focus:border-blue-500 outline-none">
-        </div>
-
-        <div>
-          <label class="block mb-1 font-medium text-slate-700">Amount (₹) *</label>
-          <input id="inputAmount" type="number" required min="1" placeholder="₹0" class="w-full border border-slate-200 rounded-lg p-2.5 focus:border-blue-500 outline-none">
-        </div>
-
-        <div>
-          <label class="block mb-1 font-medium text-slate-700">Select Category *</label>
-          <select id="inputCategory" class="w-full border border-slate-200 rounded-lg p-2.5 focus:border-blue-500 outline-none bg-white">
-            <option value="Mess">Mess Expenses</option>
-            <option value="Personal">Personal Expenses</option>
-            <option value="Loan">Loans</option>
-            <option value="Payables">Payables</option>
-          </select>
-        </div>
-
-        <div>
-          <label class="block mb-1 font-medium text-slate-700">Date</label>
-          <input id="inputDate" type="date" class="w-full border border-slate-200 rounded-lg p-2.5 focus:border-blue-500 outline-none">
-        </div>
-
-        <div class="flex gap-2 pt-2">
-          <button type="button" onclick="closeModal()" class="w-1/2 py-2.5 rounded-lg border border-slate-200 font-semibold text-slate-600 hover:bg-slate-50">Cancel</button>
-          <button type="submit" class="w-1/2 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 font-semibold text-white">Save Record</button>
-        </div>
-      </form>
     </div>
   </div>
 
   <script>
-    // State management using localStorage
-    let allRecords = JSON.parse(localStorage.getItem('mft_records_v2')) || [];
-    let currentTab = 'dashboard';
-    let barChartInstance = null;
-    let donutChartInstance = null;
+    // LocalStorage Data Setup
+    let data = JSON.parse(localStorage.getItem('mft_user_records')) || [];
+    let currentCategory = 'All';
 
-    function saveToStorage() {
-      localStorage.setItem('mft_records_v2', JSON.stringify(allRecords));
-    }
+    function setTab(cat) {
+      currentCategory = cat;
 
-    function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      const backdrop = document.getElementById('backdrop');
-      sidebar.classList.toggle('-translate-x-full');
-      backdrop.classList.toggle('hidden');
-    }
-
-    function switchTab(tabName) {
-      currentTab = tabName;
-
-      // Update active nav button styling
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-      const activeBtn = document.getElementById(`btn-${tabName}`);
-      if (activeBtn) activeBtn.classList.add('active');
-
-      // Hide or show chart overview section
-      const chartSection = document.getElementById('chartSection');
-      if (tabName === 'dashboard') {
-        chartSection.classList.remove('hidden');
-        document.getElementById('tableHeaderTitle').innerText = 'All Transactions';
-        document.getElementById('tableHeaderSub').innerText = 'Showing all tracked items across all categories.';
-      } else {
-        chartSection.classList.add('hidden');
-        document.getElementById('tableHeaderTitle').innerText = `${tabName} Records`;
-        document.getElementById('tableHeaderSub').innerText = `Filtered records for ${tabName}.`;
-      }
-
-      // Close mobile drawer on item tap
-      const sidebar = document.getElementById('sidebar');
-      const backdrop = document.getElementById('backdrop');
-      if (!sidebar.classList.contains('-translate-x-full')) {
-        sidebar.classList.add('-translate-x-full');
-        backdrop.classList.add('hidden');
-      }
-
-      renderUI();
-    }
-
-    function calculateTotals() {
-      const totals = { Mess: 0, Personal: 0, Loan: 0, Payables: 0 };
-      allRecords.forEach(item => {
-        if (totals.hasOwnProperty(item.category)) {
-          totals[item.category] += Number(item.amount);
+      // Update Active Tab Button Styling
+      ['All', 'Mess', 'Personal', 'Loan', 'Payables'].forEach(c => {
+        const btn = document.getElementById('tab-' + c);
+        if (btn) {
+          if (c === cat) {
+            btn.className = "px-3.5 py-2 rounded-xl bg-emerald-500 text-slate-950 font-bold transition";
+          } else {
+            btn.className = "px-3.5 py-2 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 transition";
+          }
         }
       });
-      return totals;
+
+      renderApp();
     }
 
-    function renderUI() {
-      const totals = calculateTotals();
-      document.getElementById('cardMess').innerText = '₹' + totals.Mess.toLocaleString('en-IN');
-      document.getElementById('cardPersonal').innerText = '₹' + totals.Personal.toLocaleString('en-IN');
-      document.getElementById('cardLoan').innerText = '₹' + totals.Loan.toLocaleString('en-IN');
-      document.getElementById('cardPayables').innerText = '₹' + totals.Payables.toLocaleString('en-IN');
+    function renderApp() {
+      const list = document.getElementById('entriesList');
+      const totalDisplay = document.getElementById('totalDisplay');
+      const countDisplay = document.getElementById('countDisplay');
+      const summaryTitle = document.getElementById('summaryTitle');
+      const listHeading = document.getElementById('listHeading');
 
-      // Filter table based on active tab
-      const filtered = currentTab === 'dashboard' 
-        ? allRecords 
-        : allRecords.filter(r => r.category === currentTab);
+      list.innerHTML = '';
 
-      const tbody = document.getElementById('transactionBody');
-      const emptyNotice = document.getElementById('emptyNotice');
-      tbody.innerHTML = '';
+      // Filter based on active tab
+      const filtered = currentCategory === 'All' 
+        ? data 
+        : data.filter(item => item.category === currentCategory);
+
+      let total = 0;
+      filtered.forEach(item => total += Number(item.amount));
+
+      summaryTitle.innerText = `Total (${currentCategory})`;
+      totalDisplay.innerText = '₹' + total.toLocaleString('en-IN');
+      countDisplay.innerText = filtered.length;
+      listHeading.innerText = `${currentCategory} Entries (${filtered.length})`;
 
       if (filtered.length === 0) {
-        emptyNotice.classList.remove('hidden');
-      } else {
-        emptyNotice.classList.add('hidden');
-        filtered.forEach((item) => {
-          const originalIndex = allRecords.findIndex(r => r.id === item.id);
-          const tr = document.createElement('tr');
-          tr.className = 'hover:bg-slate-50/80 transition';
-          
-          let badgeColor = 'bg-slate-100 text-slate-700';
-          if (item.category === 'Mess') badgeColor = 'bg-emerald-50 text-emerald-600 font-semibold';
-          if (item.category === 'Personal') badgeColor = 'bg-blue-50 text-blue-600 font-semibold';
-          if (item.category === 'Loan') badgeColor = 'bg-amber-50 text-amber-600 font-semibold';
-          if (item.category === 'Payables') badgeColor = 'bg-purple-50 text-purple-600 font-semibold';
-
-          tr.innerHTML = `
-            <td class="py-3 font-medium text-slate-800">${item.title}</td>
-            <td class="py-3"><span class="px-2 py-0.5 rounded-md text-[10px] ${badgeColor}">${item.category}</span></td>
-            <td class="py-3 text-slate-400">${item.date}</td>
-            <td class="py-3 font-bold text-slate-800 text-right">₹${Number(item.amount).toLocaleString('en-IN')}</td>
-            <td class="py-3 text-center">
-              <button onclick="deleteRecord(${originalIndex})" class="text-red-400 hover:text-red-600 p-1 font-bold">✕</button>
-            </td>
-          `;
-          tbody.appendChild(tr);
-        });
+        list.innerHTML = `<div class="text-center text-slate-500 text-xs py-6">Koi entry nahi hai. Naya amount add karein!</div>`;
+        return;
       }
 
-      updateCharts(totals);
+      filtered.forEach(item => {
+        const indexInMain = data.findIndex(d => d.id === item.id);
+        const div = document.createElement('div');
+        div.className = 'flex justify-between items-center bg-slate-900/80 p-3 rounded-xl border border-slate-700/50';
+        div.innerHTML = `
+          <div>
+            <div class="font-medium text-slate-200 text-sm">${item.title}</div>
+            <div class="text-[10px] text-slate-400 uppercase tracking-wider">${item.category} • ${item.date}</div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="font-bold text-emerald-400">₹${Number(item.amount).toLocaleString('en-IN')}</span>
+            <button onclick="deleteSingleEntry(${indexInMain})" class="text-red-400 hover:text-red-300 font-bold text-base px-1">✕</button>
+          </div>
+        `;
+        list.appendChild(div);
+      });
     }
 
-    function updateCharts(totals) {
-      const dataArr = [totals.Mess, totals.Personal, totals.Loan, totals.Payables];
-      const hasData = dataArr.some(v => v > 0);
+    function addNewEntry() {
+      const titleInput = document.getElementById('itemTitle');
+      const amountInput = document.getElementById('itemAmount');
+      const categorySelect = document.getElementById('itemCategory');
 
-      if (barChartInstance) {
-        barChartInstance.data.datasets[0].data = dataArr;
-        barChartInstance.update();
+      const title = titleInput.value.trim();
+      const amount = amountInput.value.trim();
+      const category = categorySelect.value;
+
+      if (!title || !amount || Number(amount) <= 0) {
+        alert('Kripya valid description aur amount daliye!');
+        return;
       }
 
-      if (donutChartInstance) {
-        donutChartInstance.data.datasets[0].data = hasData ? dataArr : [1, 1, 1, 1];
-        donutChartInstance.data.datasets[0].backgroundColor = hasData 
-          ? ['#10b981', '#3b82f6', '#f59e0b', '#a855f7'] 
-          : ['#e2e8f0', '#e2e8f0', '#e2e8f0', '#e2e8f0'];
-        donutChartInstance.update();
-      }
-    }
+      const today = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
 
-    function openModal() {
-      if (currentTab !== 'dashboard') {
-        document.getElementById('inputCategory').value = currentTab;
-      }
-      document.getElementById('inputDate').value = new Date().toISOString().split('T')[0];
-      document.getElementById('modalOverlay').classList.remove('hidden');
-      document.getElementById('modalOverlay').classList.add('flex');
-    }
-
-    function closeModal() {
-      document.getElementById('modalOverlay').classList.add('hidden');
-      document.getElementById('modalOverlay').classList.remove('flex');
-    }
-
-    function handleFormSubmit(event) {
-      event.preventDefault();
-      const title = document.getElementById('inputTitle').value.trim();
-      const amount = document.getElementById('inputAmount').value.trim();
-      const category = document.getElementById('inputCategory').value;
-      const rawDate = document.getElementById('inputDate').value;
-
-      const dateObj = rawDate ? new Date(rawDate) : new Date();
-      const formattedDate = dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
-
-      allRecords.unshift({
+      data.unshift({
         id: Date.now(),
-        title,
+        title: title,
         amount: Number(amount),
-        category,
-        date: formattedDate
+        category: category,
+        date: today
       });
 
-      saveToStorage();
-      document.getElementById('inputTitle').value = '';
-      document.getElementById('inputAmount').value = '';
-      closeModal();
-      renderUI();
+      localStorage.setItem('mft_user_records', JSON.stringify(data));
+
+      titleInput.value = '';
+      amountInput.value = '';
+
+      renderApp();
     }
 
-    function deleteRecord(index) {
-      if (confirm('Kya aap is record ko delete karna chahte hain?')) {
-        allRecords.splice(index, 1);
-        saveToStorage();
-        renderUI();
+    function deleteSingleEntry(index) {
+      data.splice(index, 1);
+      localStorage.setItem('mft_user_records', JSON.stringify(data));
+      renderApp();
+    }
+
+    function clearCurrentCategory() {
+      if (confirm(`Kya aap ${currentCategory} ke saare records clear karna chahte hain?`)) {
+        if (currentCategory === 'All') {
+          data = [];
+        } else {
+          data = data.filter(item => item.category !== currentCategory);
+        }
+        localStorage.setItem('mft_user_records', JSON.stringify(data));
+        renderApp();
       }
     }
 
-    window.onload = function() {
-      lucide.createIcons();
-
-      // Initialize Charts
-      const barCtx = document.getElementById('barChart').getContext('2d');
-      barChartInstance = new Chart(barCtx, {
-        type: 'bar',
-        data: {
-          labels: ['Mess', 'Personal', 'Loans', 'Payables'],
-          datasets: [{
-            label: 'Amount (₹)',
-            data: [0, 0, 0, 0],
-            backgroundColor: ['#10b981', '#3b82f6', '#f59e0b', '#a855f7'],
-            borderRadius: 6
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { legend: { display: false } },
-          scales: {
-            y: { beginAtZer
+    // Run on initial load
+    renderApp();
+  </script>
+</body>
+  </html>
+  
